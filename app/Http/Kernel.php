@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+         * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
      *
@@ -16,7 +16,14 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
+
+        /**
+         * Do not know why the Fruitcake\Cors\HandleCors won't add Access-Control-Allow-Origin 
+         * To study the root cause later...
+         **/
+        // \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\cors::class,
+
         \App\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
